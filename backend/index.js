@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const session = require("express-session");
 const cors = require("cors");
 const passport = require("passport");
-// const LocalStrategy = require("passport-local");
 const LocalStrategy = require('passport-local').Strategy;
 const User = require("./models/user1");
 const userRouter = require("./routes/user");
