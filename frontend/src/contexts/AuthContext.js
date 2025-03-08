@@ -9,7 +9,7 @@ export const AuthContext = createContext({});
 
 // Create an Axios instance with a base URL for user-related API requests
 const client = axios.create({
-    baseURL: "http://localhost:3003/api/users" // Correct URL
+    baseURL: "http://localhost:3005/api/users" // Correct URL
     
 });
 
