@@ -8,6 +8,7 @@ import Navbar from "./components/common/Navbar"
 import SignUp from "./pages/signup.jsx"
 import Login from "./pages/login";
 import ProfilePage from "./pages/profile";
+import Logout from "./pages/logout.jsx";
 function App() {
     return (
         <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
@@ -17,6 +18,7 @@ function App() {
                 <Route path="signup" element={<SignUp />}/>
                 <Route path="login" element={<Login />}/>
                 <Route path="profile" element={<ProfilePage/>}/>
+                <Route path="/logout" element={<Logout />} />
             </Routes>
         </div>
     );

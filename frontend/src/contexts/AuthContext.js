@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
             console.log('Registration Response:', request.data);
     
             if (request.data && request.data.message) {
-                return request.data.message || "Registration successful";
+                return request.data.message || "Registration successful"
             } else {
                 throw new Error("Registration failed: Invalid response from server.");
             }

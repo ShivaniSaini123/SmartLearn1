@@ -23,6 +23,10 @@ export const NavbarLinks=[
         path:"/login",
     },
     {
+        title:"Login",
+        path:"/login",
+    },
+    {
         title:"profilePage",
         path:"/profile"
     }
