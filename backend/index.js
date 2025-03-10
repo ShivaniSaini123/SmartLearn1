@@ -8,7 +8,7 @@ const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
 const User = require("./models/user1");
 const userRouter = require("./routes/user");
-const profileRoutes = require("./routes/profileRoutes");
+
 
 const app = express();
 const PORT = process.env.PORT || 3005 || 3003;
@@ -59,7 +59,6 @@ passport.deserializeUser(User.deserializeUser());
 
 // Routes
 app.use("/api/users", userRouter );
-app.use("/api/profile", profileRoutes);
 mongoose.connect(process.env.MONGO_URL, {
     serverSelectionTimeoutMS: 30000,  // Increase timeout to 10s
 })
