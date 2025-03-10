@@ -1,4 +1,4 @@
-           import {useState, useContext} from "react";
+import {useState, useContext, useEffect, useRef} from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import smartLearnLogo from "../../assets/projectlogo/projLogo.png";
@@ -6,6 +6,25 @@ import smartLearnLogo from "../../assets/projectlogo/projLogo.png";
 const Navbar = () => {
     const { userData, setUserData } = useContext(AuthContext);
     // const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsDropdownOpen(false);
+            }
+        }
+
+        // Add event listener when dropdown is open
+        if (isDropdownOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            // Remove event listener on cleanup
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isDropdownOpen]);
 
     const handleLogout = () => {
         localStorage.removeItem("token"); // Remove the token from localStorage
@@ -23,9 +42,41 @@ const Navbar = () => {
             
             {/* Navbar Links */}
             <ul className="flex items-center gap-6 text-white">
-                <li>
-                    <Link className="hover:text-yellow-400 transition" to="/categorize">Categorize</Link>
+                               {/* Categorize Dropdown */}
+                <li className="relative" ref={dropdownRef}>
+                    <button
+                        className="hover:text-yellow-400 transition"
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    >
+                        Categorize ▼
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    {isDropdownOpen && (
+                        <ul className="absolute left-0 mt-2 w-48 bg-gray-800 text-white shadow-lg rounded-lg overflow-hidden">
+                            <li className="hover:bg-gray-700 px-4 py-2">
+                                <Link to="/Categorize/dsa">DSA</Link>
+                            </li>
+                            <li className="hover:bg-gray-700 px-4 py-2">
+                                <Link to="/Categorize/webd">Web Development</Link>
+                            </li>
+                            <li className="hover:bg-gray-700 px-4 py-2">
+                                <Link to="/Categorize/ai">Artificial Intelligence</Link>
+                            </li>
+                            <li className="hover:bg-gray-700 px-4 py-2">
+                                <Link to="/Categorize/ml">Machine Learning</Link>
+                            </li>
+                            <li className="hover:bg-gray-700 px-4 py-2">
+                                <Link to="/Categorize/python">Python</Link>
+                            </li>
+                            <li className="hover:bg-gray-700 px-4 py-2">
+                                <Link to="/Categorize/DataScience">Data Science</Link>
+                            </li>
+                        </ul>
+                    )}
                 </li>
+
+
                 <li>
                     <Link className="hover:text-yellow-400 transition" to="/about">About Us</Link>
                 </li>
