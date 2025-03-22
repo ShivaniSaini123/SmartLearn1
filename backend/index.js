@@ -9,7 +9,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require("./models/user1");
 const userRouter = require("./routes/user");
 
-
 const app = express();
 const PORT = process.env.PORT || 3005 || 3003;
 app.use(
@@ -20,8 +19,11 @@ app.use(
         allowedHeaders: "Content-Type, Authorization"
     })
 );
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/users", userRouter );
 const allowedOrigins = ["http://localhost:3001", "http://localhost:3004"];
 
 app.use((req, res, next) => {
@@ -58,7 +60,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Routes
-app.use("/api/users", userRouter );
 mongoose.connect(process.env.MONGO_URL, {
     serverSelectionTimeoutMS: 30000,  // Increase timeout to 10s
 })
