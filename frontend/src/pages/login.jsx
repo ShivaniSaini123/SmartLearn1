@@ -19,7 +19,7 @@ const Login = () => {
 
             if (loginResponse && loginResponse.success) {
                 console.log('Login Successful:', loginResponse.message);
-                navigate('/'); // Redirect to home page after successful login
+                navigate('..common/dashboard'); // Redirect to dashboard page after successful login
             } else {
                 setErrorMessage('Login failed: Incorrect credentials');
             }
@@ -40,7 +40,7 @@ const Login = () => {
                             htmlFor="username"
                             className="block text-sm font-medium text-gray-700"
                         >
-                            Username
+                            Email
                         </label>
                         <input
                             className="mt-1 block w-full py-2 px-4 rounded-md border-gray-800 bg-[#2c2f38] text-white shadow-sm hover:bg-[#3a3f48] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
